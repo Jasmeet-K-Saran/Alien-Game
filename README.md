@@ -1,4 +1,4 @@
-# Alien Office Escape: Customizable 2D Arcade Game
+# Alien Escapade: Customizable 2D Arcade Game
 
 **Course:** Multimedia Systems Lab — Lab Test 2  
 **Implementation:** Built with HTML5 Canvas, CSS3, and Vanilla JavaScript.  

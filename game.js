@@ -1,5 +1,5 @@
 /**
- * Alien Office Escape: Customizable 2D Arcade Game
+ * Alien Escapade: Customizable 2D Arcade Game
  * Multimedia Systems Lab — Lab Test 2
  * 
  * Built with HTML5 Canvas, Vanilla CSS & Modern JavaScript.
@@ -1139,7 +1139,7 @@ class GameEngine {
     // Capture Canvas Screenshot as High-Def PNG download
     captureScreenshot() {
         const link = document.createElement("a");
-        link.download = `Alien_Office_Escape_LabTest_${Date.now()}.png`;
+        link.download = `Alien_Escapade_LabTest_${Date.now()}.png`;
         link.href = this.canvas.toDataURL("image/png");
         link.click();
     }

@@ -1,5 +1,5 @@
 """
-Alien Office Escape: Customizable 2D Arcade Game (Python / Pygame Edition)
+Alien Escapade: Customizable 2D Arcade Game (Python / Pygame Edition)
 Multimedia Systems Lab — Lab Test 2
 
 Run with:
@@ -70,7 +70,7 @@ class AlienGame:
         pygame.init()
         pygame.font.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption("Alien Office Escape — 2D Arcade Game")
+        pygame.display.set_caption("Alien Escapade — 2D Arcade Game")
         self.clock = pygame.time.Clock()
 
         # Fonts
@@ -323,7 +323,7 @@ class AlienGame:
 
         # Overlay Screens
         if self.state == "START":
-            self.draw_overlay("ALIEN OFFICE ESCAPE", "Press SPACE or Enter to Start", "WASD / Mouse to move | P to Pause")
+            self.draw_overlay("ALIEN ESCAPADE", "Press SPACE or Enter to Start", "WASD / Mouse to move | P to Pause")
         elif self.state == "PAUSE":
             self.draw_overlay("GAME PAUSED", "Press P to Resume", "Take a cosmic breath!")
         elif self.state == "OVER":
