@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alien Escapade — 2D Arcade Game (Multimedia Systems Lab)</title>
+    <title>Alien Escapade — 2D Arcade Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -55,14 +55,14 @@
                 <button id="hudDemoBtn" class="hud-btn" title="Toggle AI Autoplay Demo (T)">🤖</button>
                 <button id="muteBtn" class="hud-btn" title="Toggle Sound (M)">🔊</button>
                 <button id="pauseBtn" class="hud-btn" title="Pause Game (P)">⏸️</button>
-                <button id="configToggleBtn" class="hud-btn" title="Customization Panel (C)">⚙️</button>
+                <button id="configToggleBtn" class="hud-btn" title="Settings Panel (C)">⚙️</button>
             </div>
         </div>
 
         <!-- Start / Title Overlay -->
         <div id="startScreen" class="overlay-screen active">
             <div class="screen-card">
-                <div class="title-badge">MULTIMEDIA SYSTEMS LAB • LAB TEST 2</div>
+                <div class="title-badge">ARCADE EDITION</div>
                 <h1 class="game-title">ALIEN ESCAPADE</h1>
                 <p class="tagline">Survive the galactic workday, grab coffee, dodge emails & outrun Boss Zorg!</p>
 
@@ -143,19 +143,18 @@
 
                 <div class="btn-group">
                     <button id="restartBtn" class="glow-button">PLAY AGAIN (SPACE)</button>
-                    <button id="screenshotBtn" class="secondary-button" title="Save screenshot for Lab Submission">📸 SAVE LAB SCREENSHOT</button>
                 </div>
             </div>
         </div>
 
-        <!-- Interactive Customization & Lab Demonstration Drawer (Press 'C') -->
+        <!-- Interactive Customization & Settings Drawer (Press 'C') -->
         <div id="configDrawer" class="config-drawer closed">
             <div class="config-header">
-                <h3>🛠️ LAB CUSTOMIZATION & VIVA DEMO</h3>
+                <h3>🛠️ GAME CUSTOMIZER & CHEATS</h3>
                 <button id="configCloseBtn" class="close-x">✕</button>
             </div>
             <div class="config-body">
-                <p class="config-info">Modify options below or in <code>CONFIG</code> in <code>game.js</code> to demonstrate assigned lab customizations in real time:</p>
+                <p class="config-info">Modify options below or in <code>CONFIG</code> in <code>game.js</code> to customize gameplay in real time:</p>
                 
                 <div class="config-field">
                     <label>Power-Up Effect:</label>
@@ -192,7 +191,7 @@
                     </select>
                 </div>
 
-                <div class="demo-buttons-title">Instant Lab Test Demos:</div>
+                <div class="demo-buttons-title">Instant Cheats & Spawns:</div>
                 <div class="demo-grid">
                     <button id="btnSpawnCoffee" class="mini-btn">☕ Spawn Coffee</button>
                     <button id="btnSpawnEspresso" class="mini-btn">🌟 Spawn Espresso</button>

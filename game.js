@@ -998,10 +998,7 @@ class GameEngine {
         document.getElementById("configToggleBtn").onclick = () => this.toggleConfigDrawer();
         document.getElementById("configCloseBtn").onclick = () => this.toggleConfigDrawer();
 
-        // 1-Click Screenshot Export for Lab Submission
-        document.getElementById("screenshotBtn").onclick = () => this.captureScreenshot();
-
-        // Lab Live Customizer Controls
+        // Game Customizer Controls
         const cfgPower = document.getElementById("cfgPowerup");
         const cfgDiff = document.getElementById("cfgDifficulty");
         const cfgLoss = document.getElementById("cfgHazardLoss");
@@ -1134,14 +1131,6 @@ class GameEngine {
         this.hud.classList.add("hidden");
         this.gameOverScreen.classList.remove("hidden");
         this.gameOverScreen.classList.add("active");
-    }
-
-    // Capture Canvas Screenshot as High-Def PNG download
-    captureScreenshot() {
-        const link = document.createElement("a");
-        link.download = `Alien_Escapade_LabTest_${Date.now()}.png`;
-        link.href = this.canvas.toDataURL("image/png");
-        link.click();
     }
 
 
