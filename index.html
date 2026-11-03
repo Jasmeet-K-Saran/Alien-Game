@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alien Office Escape — 2D Arcade Game (Multimedia Systems Lab)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main HTML5 Canvas -->
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+
+        <!-- Top HUD (Visible during gameplay) -->
+        <div id="hud" class="hud-layer hidden">
+            <div class="hud-left">
+                <div class="hud-item score-box">
+                    <span class="hud-label">SCORE</span>
+                    <span id="scoreDisplay" class="hud-value">0</span>
+                </div>
+                <div class="hud-item level-box">
+                    <span class="hud-label">LEVEL</span>
+                    <span id="levelDisplay" class="hud-value">1</span>
+                </div>
+                <div class="hud-item lives-box">
+                    <span class="hud-label">LIVES</span>
+                    <div id="livesContainer" class="lives-icons">
+                        <!-- Lives rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Energy Bar Section -->
+            <div class="hud-center">
+                <div class="energy-wrapper">
+                    <div class="energy-label-row">
+                        <span class="energy-title">☕ ENERGY / CAFFEINE</span>
+                        <span id="energyText" class="energy-percent">100%</span>
+                    </div>
+                    <div class="energy-bar-track">
+                        <div id="energyFill" class="energy-bar-fill"></div>
+                    </div>
+                </div>
+                <!-- Power-Up Active Banner -->
+                <div id="powerupBanner" class="powerup-banner hidden">
+                    <span id="powerupName">DAY-OFF PASS</span>: <span id="powerupTimer">7.0s</span>
+                </div>
+                <!-- AI Demo Mode Banner -->
+                <div id="aiBanner" class="ai-banner hidden">
+                    🤖 AUTOPLAY DEMO (Press any key to take control)
+                </div>
+            </div>
+
+            <div class="hud-right">
+                <button id="hudDemoBtn" class="hud-btn" title="Toggle AI Autoplay Demo (T)">🤖</button>
+                <button id="muteBtn" class="hud-btn" title="Toggle Sound (M)">🔊</button>
+                <button id="pauseBtn" class="hud-btn" title="Pause Game (P)">⏸️</button>
+                <button id="configToggleBtn" class="hud-btn" title="Customization Panel (C)">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Start / Title Overlay -->
+        <div id="startScreen" class="overlay-screen active">
+            <div class="screen-card">
+                <div class="title-badge">MULTIMEDIA SYSTEMS LAB • LAB TEST 2</div>
+                <h1 class="game-title">ALIEN OFFICE ESCAPE</h1>
+                <p class="tagline">Survive the galactic workday, grab coffee, dodge emails & outrun Boss Zorg!</p>
+
+                <div class="instructions-grid">
+                    <div class="instruction-col">
+                        <h3>🎮 CONTROLS</h3>
+                        <ul>
+                            <li><span class="key">WASD</span> or <span class="key">Arrow Keys</span> : Move Alien</li>
+                            <li><span class="key">Mouse / Touch</span> : Follows cursor / drag</li>
+                            <li><span class="key">P</span> : Pause / Resume</li>
+                            <li><span class="key">M</span> : Mute / Unmute Audio</li>
+                            <li><span class="key">C</span> : Toggle Customizer Panel</li>
+                        </ul>
+                    </div>
+                    <div class="instruction-col">
+                        <h3>📋 OBJECTS & RULES</h3>
+                        <ul class="legend-list">
+                            <li><span class="icon-swatch coffee-swatch">☕</span> <strong>Coffee / Drink:</strong> +10 pts, +25 Energy</li>
+                            <li><span class="icon-swatch gold-swatch">🌟</span> <strong>Double Espresso:</strong> +50 pts, +60 Energy</li>
+                            <li><span class="icon-swatch email-swatch">✉️</span> <strong>Urgent Email:</strong> -1 Life, -5 pts</li>
+                            <li><span class="icon-swatch pass-swatch">🔮</span> <strong>Day-Off Pass:</strong> 7s Special Effect</li>
+                            <li><span class="icon-swatch boss-swatch">👾</span> <strong>Boss Zorg:</strong> Chases you! Avoid contact!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="customization-preview" id="customSummary">
+                    <!-- Loaded dynamically from CONFIG -->
+                </div>
+
+                <div class="btn-group">
+                    <button id="startBtn" class="glow-button">START WORKDAY (SPACE)</button>
+                    <button id="demoBtn" class="secondary-button" style="border-color: #00f0ff; color: #00f0ff;">🤖 WATCH AI DEMO (T)</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pause Overlay -->
+        <div id="pauseScreen" class="overlay-screen hidden">
+            <div class="screen-card compact">
+                <h2>GAME PAUSED</h2>
+                <p>Take a cosmic breath! Your workday is temporarily on hold.</p>
+                <div class="btn-group">
+                    <button id="resumeBtn" class="glow-button">RESUME (P)</button>
+                    <button id="restartFromPauseBtn" class="secondary-button">RESTART</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div id="gameOverScreen" class="overlay-screen hidden">
+            <div class="screen-card">
+                <div class="gameover-badge" id="gameOverReason">BURNOUT / LIVES DEPLETED</div>
+                <h1 class="gameover-title">WORKDAY TERMINATED</h1>
+                
+                <div class="stats-summary">
+                    <div class="stat-box">
+                        <span class="stat-label">FINAL SCORE</span>
+                        <span id="finalScore" class="stat-val">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">HIGH SCORE</span>
+                        <span id="highScore" class="stat-val">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">LEVEL REACHED</span>
+                        <span id="finalLevel" class="stat-val">1</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">COFFEE CONSUMED</span>
+                        <span id="coffeeCount" class="stat-val">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">EMAILS DODGED</span>
+                        <span id="emailsDodged" class="stat-val">0</span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button id="restartBtn" class="glow-button">PLAY AGAIN (SPACE)</button>
+                    <button id="screenshotBtn" class="secondary-button" title="Save screenshot for Lab Submission">📸 SAVE LAB SCREENSHOT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Customization & Lab Demonstration Drawer (Press 'C') -->
+        <div id="configDrawer" class="config-drawer closed">
+            <div class="config-header">
+                <h3>🛠️ LAB CUSTOMIZATION & VIVA DEMO</h3>
+                <button id="configCloseBtn" class="close-x">✕</button>
+            </div>
+            <div class="config-body">
+                <p class="config-info">Modify options below or in <code>CONFIG</code> in <code>game.js</code> to demonstrate assigned lab customizations in real time:</p>
+                
+                <div class="config-field">
+                    <label>Power-Up Effect:</label>
+                    <select id="cfgPowerup">
+                        <option value="slow">Slow Motion (Half Speed)</option>
+                        <option value="shield">Shield (Invincible + Deletes Emails)</option>
+                        <option value="double">Double Points (2x Scoring)</option>
+                    </select>
+                </div>
+
+                <div class="config-field">
+                    <label>Difficulty Progression:</label>
+                    <select id="cfgDifficulty">
+                        <option value="both">Both (Faster Speed + More Spawns)</option>
+                        <option value="speed">Speed Only</option>
+                        <option value="spawn">Spawn Rate Only</option>
+                    </select>
+                </div>
+
+                <div class="config-field">
+                    <label>Hazard Life Loss:</label>
+                    <select id="cfgHazardLoss">
+                        <option value="1">1 Life per Hit</option>
+                        <option value="2">2 Lives (Hardcore Penalty)</option>
+                    </select>
+                </div>
+
+                <div class="config-field">
+                    <label>Energy Drain Rate:</label>
+                    <select id="cfgDrain">
+                        <option value="2.5">Normal (2.5 / sec)</option>
+                        <option value="5.0">Fast / Double (5.0 / sec)</option>
+                        <option value="1.2">Relaxed (1.2 / sec)</option>
+                    </select>
+                </div>
+
+                <div class="demo-buttons-title">Instant Lab Test Demos:</div>
+                <div class="demo-grid">
+                    <button id="btnSpawnCoffee" class="mini-btn">☕ Spawn Coffee</button>
+                    <button id="btnSpawnEspresso" class="mini-btn">🌟 Spawn Espresso</button>
+                    <button id="btnSpawnEmail" class="mini-btn">✉️ Spawn Email</button>
+                    <button id="btnSpawnPass" class="mini-btn">🔮 Spawn Day-Off</button>
+                    <button id="btnTriggerBoss" class="mini-btn alert-btn">👾 Summon Boss Zorg</button>
+                    <button id="btnToggleGod" class="mini-btn">🛡️ Toggle Godmode</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="game.js"></script>
+</body>
+</html>
