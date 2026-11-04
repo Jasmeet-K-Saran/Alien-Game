@@ -1,60 +1,82 @@
-# Alien Escapade: Customizable 2D Arcade Game
+# 👽 Alien Escapade: Customizable 2D Arcade Game
 
-**Course:** Multimedia Systems Lab — Lab Test 2  
-**Implementation:** Built with HTML5 Canvas, CSS3, and Vanilla JavaScript.  
-**Architecture:** 100% self-contained with zero external dependencies, images, or audio files. Every sprite is rendered procedurally in Canvas 2D and every sound effect and music track is synthesized via the Web Audio API.
+> **Multimedia Systems Lab — Lab Test 2**  
+> **Author:** Jasmeet Kaur Saran  
+> **Repository:** [github.com/Jasmeet-K-Saran/Alien-Game](https://github.com/Jasmeet-K-Saran/Alien-Game)  
+> **Tech Stack:** HTML5 Canvas, CSS3, Modern JavaScript (Vanilla) & Python / Pygame
 
 ---
 
-## 1. Story and Rules
-You are an alien office worker (Gleep the Alien Intern) somewhere in the corporate galaxy. Your energy and caffeine metabolism keep draining continuously over time. You must grab energy drinks and coffee cups to stay awake, while dodging urgent office emails, evading security patrol guards, and escaping your angry boss, **Boss Zorg**.
+## 🌟 Game Overview
+**Alien Escapade** is a high-octane 2D arcade game built entirely from scratch. You control **Gleep**, a hard-working alien office intern whose caffeine metabolism drains continuously over time. You must collect steaming **Coffee Cups** and high-potency **Double Espressos** to prevent burnout, dodge floating **Urgent Emails**, evade **Alien Security Drones**, and outrun your angry corporate boss, **Boss Zorg**!
 
-### Object Legend & Gameplay Mechanics:
-| Object | Visual Indicator | Gameplay Effect |
+### Key Technical Highlights:
+- **100% Self-Contained:** Zero external image, sprite, or audio files. All graphics are procedurally generated with Canvas 2D paths, and all sound effects and music are synthesized in real-time via the Web Audio API.
+- **Autonomous AI Autoplay Demo:** Built-in AI steering mode (press **`T`**) that plays the game automatically for presentations.
+- **Refresh-Rate Independent:** Uses high-precision Delta Time ($\Delta t$) physics ensuring identical gameplay speed on 60Hz, 120Hz, and 144Hz displays.
+- **Zero-Setup Execution:** Double-click `index.html` to run immediately in any browser without needing servers, libraries, or installations.
+
+---
+
+## 🎮 Objects & Rules
+
+| Object | In-Game Visual | Effect on Player |
 |---|---|---|
-| **Energy Drink / Coffee** | Cyan mug with rising steam | **+10 points** and **+25 Energy** |
-| **Double Espresso** | Large gold mug with star emblem | **+50 points** and **+60 Energy** |
-| **Urgent Email** | Red holographic envelope with '!' badge | **-1 Life** and **-5 points** (wobbles in sine-wave) |
-| **Security Guard Drone** | Purple patrol drone with red scanner visor | **-1 Life** and **-10 points** |
-| **Day-Off Pass** | Glowing blue/cyan orbital energy orb | Activates the assigned special power-up for **7 seconds** |
-| **Boss Zorg** | Purple alien executive in a sharp business suit | Chases player continuously; contact costs a life |
+| ☕ **Coffee Cup** | Cyan mug with rising steam curls | **+10 Points**, **+25% Energy / Caffeine** |
+| 🌟 **Double Espresso** | Shimmering gold mug with star emblem | **+50 Points**, **+60% Energy / Caffeine** |
+| ✉️ **Urgent Email** | Red holographic envelope with '!' badge | **-1 Life**, **-5 Points** (sine-wave wobble) |
+| 👾 **Security Drone** | Purple patrol drone with red laser scanner | **-1 Life**, **-10 Points** (corridor patrol) |
+| 🔮 **Day-Off Pass** | Glowing cyan orbital energy sphere | Activates assigned power-up for **7 Seconds** |
+| 🛸 **Boss Zorg** | Purple alien executive in a sharp business suit | Chases player continuously; contact costs a life |
 
-- **Energy / Metabolism Mechanic:** Energy is displayed as a top-center progress bar (0–100%). It drains continuously every frame and drains faster as the level increases.
-  - At **0% Energy**, the player suffers **Burnout**: loses 1 life, and energy automatically resets to 50% with invulnerability recovery frames.
-- **Lives:** You start with **3 Alien Lives** (`👽 👽 👽`). When all lives reach 0, the game is over.
-- **Level Progression:** $\text{Level} = \lfloor\frac{\text{Score}}{\text{PointsPerLevel}}\rfloor + 1$. Each level increases item speed, obstacle spawn frequency, and Boss Zorg's pursuit speed.
-- **Game States:** **Start Screen**, **Active Gameplay**, **Paused**, and **Game Over**. You can restart instantly without reloading the page.
-
----
-
-## 2. Controls
-- **Move Alien Intern:**
-  - `Arrow Keys` or `W`, `A`, `S`, `D`
-  - **Mouse / Touch:** Move mouse or drag finger across the screen (the alien smoothly tracks your cursor).
-- **Start / Restart:** `Space`, `Enter`, or click on-screen buttons.
-- **AI Autoplay Demo Mode:** `T` key or click `🤖 WATCH AI DEMO` (automatically steers to collect coffee and dodge hazards).
-- **Pause / Resume:** `P` key or pause button in the HUD.
-- **Mute / Unmute Sound:** `M` key or speaker button in the HUD.
-- **Live Customization & Viva Demo Drawer:** `C` key or gear icon `⚙️` in the top right.
+- **Energy / Metabolism Mechanic:** Displayed as a dynamic HUD progress bar (0–100%). It drains continuously each frame, and drains faster at higher levels.
+  - At **0% Energy**, the player suffers **Burnout**: loses 1 life, and energy automatically resets to 50% with an invulnerability recovery buffer.
+- **Lives:** Player starts with **3 Alien Lives** (`👽 👽 👽`). The game ends when all 3 lives are lost.
+- **Level Scaling:** $\text{Level} = \lfloor\frac{\text{Score}}{\text{PointsPerLevel}}\rfloor + 1$. Higher levels compress spawn gaps and increase obstacle speed.
+- **Game States:** **Start Screen**, **Active Gameplay**, **Paused**, and **Game Over** with instant replay without page reload.
 
 ---
 
-## 3. How to Run
-1. Ensure the following three files are located in the same directory:
-   - `index.html`
-   - `style.css`
-   - `game.js`
-2. **Double-click `index.html`** in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Brave, Safari).
-3. No web server, node modules, or external installation is required.
+## 🕹️ Controls
+
+| Key / Input | Action |
+|---|---|
+| <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or <kbd>↑</kbd> <kbd>←</kbd> <kbd>↓</kbd> <kbd>→</kbd> | Move Alien Intern |
+| **Mouse / Touch Drag** | Alien smoothly follows cursor or finger |
+| <kbd>Space</kbd> or <kbd>Enter</kbd> | Start Game / Play Again |
+| <kbd>T</kbd> | **Toggle Autonomous AI Autoplay Demo** |
+| <kbd>P</kbd> | Pause / Resume Game |
+| <kbd>M</kbd> | Mute / Unmute Audio Synthesizer |
+| <kbd>C</kbd> | Open Live Customizer & Settings Drawer |
 
 ---
 
-## 4. Customization (Assigned Lab Requirement)
-All game configuration options are centralized at the very top of `game.js` in the `CONFIG` object:
+## 🚀 How to Run the Game
+
+### Method 1: Direct Browser Play (Easiest)
+1. Navigate to the project directory:
+   ```text
+   C:\Users\DELL\Downloads\game_a\
+   ```
+2. Double-click **`index.html`** in any web browser (Chrome, Edge, Firefox, Brave, Safari).
+3. The game will run immediately with full audio and visual features offline.
+
+### Method 2: Python / Pygame Version
+If your lab evaluator requires the Python implementation:
+```bash
+cd C:\Users\DELL\Downloads\game_a
+pip install pygame
+python game_pygame.py
+```
+
+---
+
+## 🛠️ Individual Customization (`CONFIG`)
+
+All instructor-assigned customizations are centralized at the top of `game.js` (lines 12–60):
 
 ```javascript
 const CONFIG = {
-    // Collectible Item configuration
     collectible: {
         name: "Coffee Cup",
         color: "#00f0ff",        // Cyan glow
@@ -63,155 +85,110 @@ const CONFIG = {
         refill: 25,              // Energy restored by normal drink (0-100 scale)
         goldRefill: 60           // Energy restored by double espresso
     },
-
-    // Hazard configuration
     hazard: {
         name: "Urgent Email",
         color: "#ff3366",        // Urgent red glow
         lifeLoss: 1,             // Number of lives lost on collision
         scorePenalty: 5          // Score deducted when hit
     },
-
-    // Guard Hazard configuration (Alien Security Patrol)
     guard: {
         name: "Security Drone",
         color: "#a855f7",
         lifeLoss: 1,
         scorePenalty: 10
     },
-
-    // Energy drain mechanics (burnout rate per second)
-    energyDrain: 2.5,            // Units of energy drained per second at Level 1
-
-    // Power-up special effect: 'slow' | 'shield' | 'double'
-    // - 'slow': Objects & Boss move at 50% speed for 7 seconds
-    // - 'shield': Complete immunity to hazards/boss + vaporizes incoming emails
-    // - 'double': All points gained are doubled (2x) for 7 seconds
-    powerup: "slow",
-
-    // Difficulty progression rule: 'speed' | 'spawn' | 'both'
-    // - 'speed': Objects move faster as level increases
-    // - 'spawn': Objects spawn more frequently as level increases
-    // - 'both': Both speed and spawn rate scale with level
-    difficulty: "both",
-
-    // Lives & Level rules
-    lives: 3,                   // Starting player lives
-    pointsPerLevel: 100,        // Score needed to advance each level
-    bossFromLevel: 2,           // Level at which Boss Zorg appears
-    bossName: "Boss Zorg",      // Name of the chasing Boss
-
-    // Visual Theme
-    bg: "alien_structure",      // Visual theme: "alien_structure"
-    accent: "#00f0ff",          // Neon accent color
-    playerColor: "#39ff14"      // Neon green alien intern
+    energyDrain: 2.5,            // Metabolism drain rate per second
+    powerup: "slow",             // 'slow' | 'shield' | 'double'
+    difficulty: "both",          // 'speed' | 'spawn' | 'both'
+    lives: 3,
+    pointsPerLevel: 100,
+    bossFromLevel: 2,
+    bossName: "Boss Zorg"
 };
 ```
 
-### Demonstration of Assigned Customizations:
-During the lab evaluation, you can demonstrate customizations in two ways:
-1. **Via Code:** Modify any property in the `CONFIG` object in `game.js` and refresh.
-2. **Via Live In-Game Demo Panel (Press `C`):** Open the slide-out panel to switch power-ups (`slow`, `shield`, `double`), toggle hazard life loss, test different energy drain rates, and instantly summon Boss Zorg or spawn test items with one click.
+### In-Game Demonstration Panel (Press `C`):
+Press **`C`** during gameplay to open the slide-out **Game Customizer**:
+- Live-switch power-ups (`Slow-Motion`, `Shield (Vaporize emails)`, or `Double Points`).
+- Adjust hazard damage penalty and energy drain speed.
+- Instantly spawn coffee, espresso, emails, or summon Boss Zorg on demand.
 
 ---
 
-## 5. Algorithm Explanation
+## 📐 Algorithm & Logic Explanation
 
-### 1. Game Loop & Delta Timing:
-The game runs on the browser's `requestAnimationFrame(loop)`. Each frame calculates:
-$$\Delta t = \min\left(\frac{t_{\text{current}} - t_{\text{last}}}{1000}, 0.1\right)$$
-Using $\Delta t$ guarantees that player movement, item scrolling, and particle physics proceed at identical speeds regardless of whether the monitor refreshes at 60Hz, 120Hz, or 144Hz.
+### 1. Game Loop & Delta Time ($\Delta t$)
+```javascript
+loop(currentTime) {
+    const dt = Math.min((currentTime - this.lastTime) / 1000, 0.1);
+    this.lastTime = currentTime;
+    if (this.mode === "play") this.update(dt);
+    this.draw();
+    requestAnimationFrame(this.loop.bind(this));
+}
+```
+`requestAnimationFrame` synchronizes rendering with the hardware monitor refresh rate. Multiplying entity translations by $\Delta t$ decouples gameplay speed from monitor hardware.
 
-### 2. Spawning Mechanism:
-Every `spawnGap` frames, `spawn()` triggers at the right canvas boundary (`x = width + 30`) with a random vertical position $y \in [60, \text{height} - 60]$. A pseudo-random floating roll decides the entity type:
-- **Coffee Cup:** 40% probability
-- **Urgent Email:** 30% probability
-- **Double Espresso:** 12% probability
-- **Security Guard Drone:** 12% probability
-- **Day-Off Pass:** 6% probability
-
-### 3. Movement & Trajectory Math:
-- Horizontal displacement: $x \leftarrow x + (v_x \cdot \text{speedMultiplier} \cdot \Delta t)$.
-- **Email Sine-Wave Flutter:** Urgent emails oscillate vertically using:
-  $$y = y_{\text{base}} + \sin(\text{time} \cdot \text{frequency}) \cdot \text{amplitude}$$
-- Items that scroll past the left edge ($x < -40$) are cleanly spliced from the entity array to prevent memory leaks.
-
-### 4. Continuous Energy Drain & Burnout:
-Energy drains every frame based on the formula:
-$$\text{Energy} \leftarrow \text{Energy} - \text{energyDrain} \times [1 + 0.1 \times (\text{level} - 1)] \times \Delta t$$
-When $\text{Energy} \le 0$, `hurt('burnout')` executes, subtracting 1 life and resetting energy to 50%.
-
-### 5. Difficulty Progression:
-- $\text{Level} = \lfloor\frac{\text{score}}{\text{pointsPerLevel}}\rfloor + 1$
-- **Speed Multiplier:** $1 + 0.15 \times (\text{level} - 1)$
-- **Spawn Interval:** $\max(18, 55 - 6 \times (\text{level} - 1))$ frames
-- At Level 2 (or higher), **Boss Zorg** enters the screen with pursuit behavior.
-
-### 6. Boss Zorg Chasing AI (Normalized Vector):
-To smoothly chase the alien intern across 2D space, the vector from Boss $(b_x, b_y)$ to Player $(p_x, p_y)$ is computed and normalized:
-$$\Delta x = p_x - b_x, \quad \Delta y = p_y - b_y$$
-$$\text{distance} = \sqrt{\Delta x^2 + \Delta y^2}$$
-$$\vec{v}_{\text{boss}} = \left(\frac{\Delta x}{\text{distance}} \times \text{speed}_{\text{boss}}, \; \frac{\Delta y}{\text{distance}} \times \text{speed}_{\text{boss}}\right)$$
-
----
-
-## 6. Collision Detection Logic
-Every entity (player, coffee mugs, emails, guards, and the boss) is bounded by a circular bounding region centered at $(x, y)$ with radius $r$.
-
-Two entities $A$ and $B$ collide if the Euclidean distance between their centers is strictly less than the sum of their radii:
-
+### 2. Circle-Circle Collision Detection
+All entities (player, coffee mugs, emails, guards, and the boss) are bounded by circles with center $(x, y)$ and radius $r$:
 ```javascript
 checkCollision(a, b) {
     return Math.hypot(a.x - b.x, a.y - b.y) < a.r + b.r;
 }
 ```
+$$\text{Distance} = \sqrt{(a_x - b_x)^2 + (a_y - b_y)^2} < (a_r + b_r)$$
+- **Invulnerability Buffer:** On taking damage, the player gains **90 frames of invulnerability** ($\approx 1.5$ seconds) with an alternating visual transparency blink (`globalAlpha = 0.35`) to prevent rapid consecutive life loss.
 
-Where `Math.hypot(dx, dy)` calculates $\sqrt{dx^2 + dy^2}$.
+### 3. Trajectory & Spawning Math
+- **Spawning:** Every `spawnGap` frames, items spawn at the right boundary with weighted probabilities:
+  - Coffee Cup: 40%
+  - Urgent Email: 30%
+  - Double Espresso: 12%
+  - Security Guard: 12%
+  - Day-Off Pass: 6%
+- **Email Sine Flutter:**
+  $$y(t) = y_{\text{base}} + \sin(t \cdot \text{frequency}) \cdot \text{amplitude}$$
 
-### Hit Handling & Invulnerability Buffer:
-- On collectible collision: Points and energy are granted, and particle bursts trigger.
-- On hazard collision: The player loses lives/points, and an invulnerability timer is set to **90 frames** (~1.5 seconds) with an alternating alpha blink (`globalAlpha = 0.35`). This prevents multiple lives from being lost on a single overlapping collision.
+### 4. Boss Pursuit AI (Normalized Vector Navigation)
+Boss Zorg calculates a 2D direction vector toward the player, normalizes it to unit length, and scales it by his pursuit speed:
+$$\Delta x = p_x - b_x, \quad \Delta y = p_y - b_y, \quad \text{dist} = \sqrt{\Delta x^2 + \Delta y^2}$$
+$$v_x = \frac{\Delta x}{\text{dist}} \cdot \text{speed}_{\text{boss}}, \quad v_y = \frac{\Delta y}{\text{dist}} \cdot \text{speed}_{\text{boss}}$$
+
+### 5. Autonomous AI Autoplay Steering (Demo Mode)
+When activated via **`T`**, the agent navigates using potential field physics:
+- **Attractive Vector:** Pulls the player toward the nearest coffee or power-up.
+- **Repulsive Vector:** Repels strongly away from hazards (emails, guards, Boss Zorg) within a 130px radius with quadratic scaling:
+  $$F_{\text{repel}} \propto \left(\frac{130 - \text{dist}}{130}\right)^2$$
+- Pressing any human control key immediately disengages the AI agent.
 
 ---
 
-## 7. Multimedia Elements
-1. **Procedural Vector Graphics (Canvas 2D):**
-   - **Gleep the Alien Intern:** 3 directional tracking eyes, antenna with glowing bulb, fluttering red corporate tie, and jetpack exhaust particles.
-   - **Coffee Cup & Double Espresso:** Porcelain mug with rising animated steam curves and coffee emblem.
-   - **Urgent Email:** Holographic envelope with glowing red flap, exclamation badge, and sine-wave motion.
-   - **Security Drone:** Floating chassis with rotating stun prongs and scanning light beam.
-   - **Boss Zorg:** Purple alien executive with an angry brow, sharp teeth, and sharp charcoal office suit with a red tie.
-   - **Alien Structure Background:** Cybernetic neon conduits, architectural pillars, scrolling parallax stars, and holographic billboards.
+## 🎨 Multimedia Elements
+
+1. **Canvas 2D Procedural Sprites:**
+   - **Gleep the Alien Intern:** 3 directional tracking eyes (using $\operatorname{atan2}$ pupil targeting), animated antenna with glowing tip, oscillating red tie, and jetpack exhaust particles.
+   - **Coffee & Espresso:** Ceramic mugs with rising steam bezier curves and emblems.
+   - **Urgent Emails:** Holographic envelopes with glowing red flaps and warning badges.
+   - **Alien Structure Background:** Parallax starfield, glowing neon conduits, and structural architectural pillars.
 2. **Web Audio API Synthesizer:**
-   - Real-time audio synthesis using oscillator nodes, gain ramps, and biquad filters:
-     - `playDrink()`: Bubbly triangle-wave gulp chirp.
-     - `playBonus()`: 3-note ascending golden chime.
-     - `playHit()`: Sawtooth electric static buzz.
-     - `playBossAlert()`: Sweeping klaxon siren.
-     - `playLevelUp()`: Major triad fanfare.
-     - `playGameOver()`: Descending minor cadence.
-     - `startBGM()`: 8-bit space-office bassline and lead arpeggio.
+   - Real-time mathematical sound synthesis using oscillators and exponential gain ramps:
+     - `playDrink()`: Bubbly rising triangle-wave chirp.
+     - `playBonus()`: 3-note ascending golden triad fanfare.
+     - `playHit()`: Electric sawtooth static buzz.
+     - `playBossAlert()`: Sweeping emergency klaxon siren.
+     - `startBGM()`: Rhythmic 8-bit space office synth groove in E minor.
 
 ---
 
-## 8. Screenshots for Lab Submission
-You can take screenshots anytime using `Win + Shift + S` on Windows, or click the built-in **"📸 SAVE LAB SCREENSHOT"** button on the Game Over screen:
-1. **Start Screen:** Shows the title, objective, instructions, and customization badge.
-2. **Active Gameplay:** Shows the alien player collecting coffee, dodging emails, and the energy bar.
-3. **Boss Encounter:** Shows Boss Zorg actively chasing the player.
-4. **Game Over Screen:** Shows final score, statistics, and high score.
-5. **Assigned Customization Active:** Shows the live customization panel with special power-up or custom rules active.
+## 🎓 Viva Questions & Answers for Lab Test
 
----
-
-## 9. Likely Viva Questions & Answers
-- **Q: Where and how is collision detection implemented in your code?**  
-  *A:* In the `checkCollision(a, b)` method in `game.js`, which uses the circle-circle collision formula `Math.hypot(a.x - b.x, a.y - b.y) < a.r + b.r`. It is evaluated during the entity iteration inside `update()`.
-- **Q: How does the energy mechanic work?**  
-  *A:* A float variable `energy` (0 to 100) decreases each frame by `energyDrain * (1 + 0.1 * (level - 1)) * dt`. Collecting coffee refills it via `Math.min(100, energy + refill)`. Reaching 0 triggers `hurt('burnout')`.
-- **Q: How does difficulty increase as the game progresses?**  
-  *A:* `level` scales with score. As level increases, obstacle horizontal speed scales by `1 + 0.15 * (level - 1)`, spawn frequency increases by reducing the frame gap down to 18 frames, and Boss Zorg appears.
-- **Q: How do you change or demonstrate the assigned customization?**  
-  *A:* By editing the `CONFIG` object at the top of `game.js` (e.g. changing `powerup` to `'shield'`, `'slow'`, or `'double'`), or by pressing `C` in-game to toggle the live customization panel.
-- **Q: Why use delta time ($\Delta t$) instead of fixed increments?**  
-  *A:* Delta time decouples gameplay updates from the display refresh rate, ensuring that movement and animations run at the exact same physical speed on a 60Hz laptop or a 144Hz monitor.
+1. **Where is collision detection implemented?**  
+   Inside `checkCollision(a, b)` in `game.js`, which checks if `Math.hypot(a.x - b.x, a.y - b.y) < a.r + b.r`. Evaluated every frame in `update()`.
+2. **How does the energy mechanic work?**  
+   Energy drains continuously each frame by `energyDrain * (1 + 0.1 * (level - 1)) * dt`. Drinks replenish it (capped at 100%). Dropping to 0 triggers `hurt('burnout')`.
+3. **How does difficulty scale?**  
+   $\text{Level} = \lfloor\frac{\text{Score}}{100}\rfloor + 1$. Higher levels boost obstacle speed by $+15\%$ per level, compress the spawn gap down to 18 frames, and trigger Boss Zorg.
+4. **Why use $\Delta t$ in the loop?**  
+   $\Delta t$ decouples gameplay speed from hardware monitor refresh rates, ensuring uniform speed across 60Hz and 144Hz screens.
+5. **How are multimedia elements integrated without external assets?**  
+   All visual sprites are drawn procedurally via Canvas 2D paths, and all audio waveforms are synthesized dynamically via the Web Audio API.
